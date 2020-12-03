@@ -1,7 +1,9 @@
 package com.javierfernandez.springboot.demo.controllers;
 
 
+import com.javierfernandez.springboot.demo.models.dao.IBizcochoDao;
 import com.javierfernandez.springboot.demo.models.dao.ICLienteDao;
+import com.javierfernandez.springboot.demo.models.entity.Bizcocho;
 import com.javierfernandez.springboot.demo.models.entity.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,6 +20,12 @@ public class MainController {
     @Autowired
     @Qualifier("clienteDaoJPA")
     private ICLienteDao clienteDao;
+
+    @Autowired
+    @Qualifier("bizcochoDaoJPA")
+    private IBizcochoDao bizcochoDao;
+
+
 
     @RequestMapping(value = "/listar",method = RequestMethod.GET)
     public String listar(Model model){
@@ -39,6 +47,31 @@ public class MainController {
     public String guardar (Cliente cliente){
         clienteDao.save(cliente);
         return "redirect:listar";
+    }
+
+
+
+
+    @RequestMapping(value = "/listarbizcocho",method = RequestMethod.GET)
+    public String listarBizcocho(Model model){
+        model.addAttribute("titulo","Listado de bizcochos");
+        model.addAttribute("bizcochos",bizcochoDao.findAll());
+        return "listarbizcocho";
+    }
+
+    @RequestMapping(value = "/formbizcocho")
+    public String crearBizcocho(Map <String, Object> model){
+        Bizcocho bizcocho = new Bizcocho();
+        model.put("bizcocho", bizcocho);
+
+        model.put("titulo", "Insertar Bizcocho");
+        return "formbizcocho";
+    }
+
+    @RequestMapping(value = "/formbizcocho", method = RequestMethod.POST)
+    public String guardarBizcocho (Bizcocho bizcocho){
+        bizcochoDao.save(bizcocho);
+        return "redirect:listarbizcocho";
     }
 
 }

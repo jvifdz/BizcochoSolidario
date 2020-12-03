@@ -18,7 +18,7 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/listar}">Clientes</a>
+                <a class="nav-link" th:href="@{/listarbizcocho}">Bizcochos</a>
             </li>
 
         </ul>
@@ -26,32 +26,38 @@
 </nav>
 <div class="container">
     <h1 class="text-secondary border border-success border-top-0 border-right-0 border-left-0" th:text="${titulo}"></h1>
-<form th:action="@{/form}" th:object="${cliente}" method="post">
+<form th:action="@{/formbizcocho}" th:object="${bizcocho}" method="post">
 
     <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Nombre</label>
+            <label class="col-sm-2 col-form-label">Raciones</label>
             <div class="col-sm-6">
-            <input type="text" th:field="*{nombre}" class="form-control"/>
+            <input type="text" th:field="*{numeroraciones}" class="form-control"/>
             </div>
     </div>
 
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Apellido</label>
+        <label class="col-sm-2 col-form-label">Votos</label>
         <div class="col-sm-6">
-        <input type="text" th:field="*{apellido}" class="form-control"/>
+        <input type="text" th:field="*{votos}" class="form-control"/>
         </div>
     </div>
 
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Email</label>
+        <label class="col-sm-2 col-form-label">Descripcion del bizcocho</label>
         <div class="col-sm-6">
-        <input type="email" th:field="*{email}" class="form-control"/>
+        <input type="text" th:field="*{descripcion}" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Intolerancias </label>
+        <div class="col-sm-6">
+            <input type="text" th:field="*{intolerancias}" class="form-control"/>
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-sm-6">
-            <input type="submit" value="Crear Usuario" class="btn btn-primary"/>
+            <input type="submit" value="Añadir bizcocho" class="btn btn-primary"/>
         </div>
     </div>
 

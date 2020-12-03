@@ -21,6 +21,7 @@ public class BizcochoDaoImpl implements IBizcochoDao{
     }
 
     @Override
+    @Transactional
     public void save(Bizcocho bizcocho) {
         em.persist(bizcocho);
 
