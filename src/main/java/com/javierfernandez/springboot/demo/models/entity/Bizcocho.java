@@ -19,7 +19,7 @@ public class Bizcocho {
 
 
     private String descripcion;
-    private String intoleracias;
+    private String intolerancias;
 
 
 
