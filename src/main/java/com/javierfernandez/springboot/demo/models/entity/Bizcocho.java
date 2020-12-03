@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name ="Bizcocho")
+@Table(name ="bizcochos")
 public class Bizcocho {
 
     private static final long serialVersionUID = 1L;

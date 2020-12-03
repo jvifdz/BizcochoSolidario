@@ -35,7 +35,6 @@ public class MainController {
         return "form";
     }
 
-
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar (Cliente cliente){
         clienteDao.save(cliente);
