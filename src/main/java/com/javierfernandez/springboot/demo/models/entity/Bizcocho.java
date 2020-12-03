@@ -70,12 +70,12 @@ public class Bizcocho {
         this.descripcion = descripcion;
     }
 
-    public String getIntoleracias() {
-        return intoleracias;
+    public String getIntolerancias() {
+        return intolerancias;
     }
 
-    public void setIntoleracias(String intoleracias) {
-        this.intoleracias = intoleracias;
+    public void setIntolerancias(String intolerancias) {
+        this.intolerancias = intolerancias;
     }
 
     public Date getFecha() {
