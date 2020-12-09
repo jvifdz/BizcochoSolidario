@@ -32,6 +32,7 @@
             <label class="col-sm-2 col-form-label">Raciones</label>
             <div class="col-sm-6">
             <input type="text" th:field="*{numeroraciones}" class="form-control"/>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('numeroraciones')}" th:errors="*{numeroraciones}"></small>
             </div>
     </div>
 
@@ -39,6 +40,7 @@
         <label class="col-sm-2 col-form-label">Votos</label>
         <div class="col-sm-6">
         <input type="text" th:field="*{votos}" class="form-control"/>
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('votos')}" th:errors="*{votos}"></small>
         </div>
     </div>
 
@@ -46,12 +48,14 @@
         <label class="col-sm-2 col-form-label">Descripcion del bizcocho</label>
         <div class="col-sm-6">
         <input type="text" th:field="*{descripcion}" class="form-control"/>
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
         </div>
     </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Intolerancias </label>
         <div class="col-sm-6">
             <input type="text" th:field="*{intolerancias}" class="form-control"/>
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('intolerancias')}" th:errors="*{intolerancias}"></small>
         </div>
     </div>
 

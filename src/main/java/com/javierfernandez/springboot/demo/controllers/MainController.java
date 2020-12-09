@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -69,7 +71,20 @@ public class MainController {
     }
 
     @RequestMapping(value = "/formbizcocho", method = RequestMethod.POST)
-    public String guardarBizcocho (Bizcocho bizcocho){
+    public String guardarBizcocho (@Valid Bizcocho bizcocho, BindingResult result, Model model){
+
+        //si tiene errores volvemos a la vista formulario
+        //y volvemos a pasar el titulo
+        //no pasamos cliente por que lo pasa automaticamente pero debe llamarese ela clase Cliente
+        //no importa la mayus
+        //igual que como lo pasas a la vista arriba en el put ("cliente")
+        //sino se indica en el @ModelAtribute
+        if (result.hasErrors()){
+            model.addAttribute("titulo","Insertar Bizcocho");
+
+            return "formbizcocho";
+        }
+
         bizcochoDao.save(bizcocho);
         return "redirect:listarbizcocho";
     }

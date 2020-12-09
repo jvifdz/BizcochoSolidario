@@ -1,7 +1,11 @@
 package com.javierfernandez.springboot.demo.models.entity;
 
 
+
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -13,12 +17,15 @@ public class Bizcocho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotNull
     private Integer numeroraciones;
+    @NotNull
     private Integer votos;
 
 
+    @NotEmpty
     private String descripcion;
+    @NotEmpty
     private String intolerancias;
 
 
