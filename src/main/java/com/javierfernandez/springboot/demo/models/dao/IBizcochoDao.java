@@ -9,4 +9,5 @@ public interface IBizcochoDao {
     public List<Bizcocho> findAll();
     public void save(Bizcocho bizcocho);
     public Bizcocho findOne(Long id);
+    public void delete(Long id);
 }

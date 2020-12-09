@@ -21,6 +21,12 @@ public class BizcochoDaoImpl implements IBizcochoDao{
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Bizcocho findOne(Long id) {
+        return em.find(Bizcocho.class, id);
+    }
+
+    @Override
     @Transactional
     public void save(Bizcocho bizcocho) {
         if (bizcocho.getId()!= null && bizcocho.getId()>0){
@@ -32,8 +38,12 @@ public class BizcochoDaoImpl implements IBizcochoDao{
 
     }
 
+
+
     @Override
-    public Bizcocho findOne(Long id) {
-        return em.find(Bizcocho.class, id);
+    @Transactional
+    public void delete(Long id) {
+        Bizcocho bizcocho= findOne(id);
+        em.remove(bizcocho);
     }
 }

@@ -37,6 +37,7 @@
         <th>Número de raciones</th>
         <th>Dia en el que se ha añadido</th>
         <th>Editar</th>
+        <th>Eliminar</th>
     </tr>
     </thead>
     <tbody>
@@ -48,6 +49,8 @@
             <td th:text="${bizcocho.numeroraciones}"></td>
             <td th:text="${bizcocho.fecha}"></td>
             <td><a class="btn btn-primary btn-xs" th:href="@{/formbizcocho/}+${bizcocho.id}" th:text="'editar'"></a></td>
+            <td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/}+${bizcocho.id}" th:text="'eliminar'" onclick="return confirm('¿Estás seguro que quieres eliminar?');"></a></td>
+
         </tr>
     </tbody>
 </table>
