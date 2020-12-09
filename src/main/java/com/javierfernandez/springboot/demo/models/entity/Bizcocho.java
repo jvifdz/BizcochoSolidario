@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 @Entity
@@ -35,6 +36,7 @@ public class Bizcocho {
 
 
     @NotNull
+    @Past
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
