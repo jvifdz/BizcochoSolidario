@@ -25,7 +25,7 @@ public class MainController {
     @Qualifier("bizcochoDaoJPA")
     private IBizcochoDao bizcochoDao;
 
-    @RequestMapping(value = "/listarbizcocho",method = RequestMethod.GET)
+    @RequestMapping(value = {"/listarbizcocho","/",""},method = RequestMethod.GET)
     public String listarBizcocho(Model model){
         model.addAttribute("titulo","Listado de bizcochos");
         model.addAttribute("bizcochos",bizcochoDao.findAll());
