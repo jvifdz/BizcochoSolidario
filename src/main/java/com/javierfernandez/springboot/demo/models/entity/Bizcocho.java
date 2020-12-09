@@ -3,6 +3,8 @@ package com.javierfernandez.springboot.demo.models.entity;
 
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -32,14 +34,17 @@ public class Bizcocho {
 
 
 
+    @NotNull
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
+    /*La fecha se ponga sola automaticamente
     @PrePersist
     public void prePersist(){
         fecha= new Date();
-    }
+    }*/
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
