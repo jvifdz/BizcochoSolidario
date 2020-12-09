@@ -26,6 +26,7 @@ public class BizcochoDaoImpl implements IBizcochoDao{
         return em.find(Bizcocho.class, id);
     }
 
+    //Hace de guardar y de editar
     @Override
     @Transactional
     public void save(Bizcocho bizcocho) {
