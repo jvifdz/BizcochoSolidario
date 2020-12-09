@@ -23,7 +23,17 @@ public class BizcochoDaoImpl implements IBizcochoDao{
     @Override
     @Transactional
     public void save(Bizcocho bizcocho) {
+        if (bizcocho.getId()!= null && bizcocho.getId()>0){
+            em.merge(bizcocho);
+        }else {
         em.persist(bizcocho);
+        }
 
+
+    }
+
+    @Override
+    public Bizcocho findOne(Long id) {
+        return em.find(Bizcocho.class, id);
     }
 }
