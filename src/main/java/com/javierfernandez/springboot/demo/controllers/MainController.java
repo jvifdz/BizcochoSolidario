@@ -3,9 +3,11 @@ package com.javierfernandez.springboot.demo.controllers;
 
 import com.javierfernandez.springboot.demo.models.dao.IBizcochoDao;
 import com.javierfernandez.springboot.demo.models.entity.Bizcocho;
+import com.javierfernandez.springboot.demo.models.services.IBizcochoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +24,12 @@ import java.util.Map;
 public class MainController {
 
     @Autowired
-    @Qualifier("bizcochoDaoJPA")
-    private IBizcochoDao bizcochoDao;
+    private IBizcochoService bizcochoService;
 
     @RequestMapping(value = {"/listarbizcocho","/",""},method = RequestMethod.GET)
     public String listarBizcocho(Model model){
         model.addAttribute("titulo","Listado de bizcochos");
-        model.addAttribute("bizcochos",bizcochoDao.findAll());
+        model.addAttribute("bizcochos",bizcochoService.findAll());
         return "listarbizcocho";
     }
 
@@ -46,7 +47,7 @@ public class MainController {
     public String editar(@PathVariable(value ="id") Long id, Map<String,Object> model){
         Bizcocho bizcocho = null;
         if (id>0){
-            bizcocho= bizcochoDao.findOne(id);
+            bizcocho= bizcochoService.findOne(id);
         }else {
             return"redirect:/listarbizcocho";
         }
@@ -71,7 +72,7 @@ public class MainController {
             return "formbizcocho";
         }
 
-        bizcochoDao.save(bizcocho);
+        bizcochoService.save(bizcocho);
         status.setComplete();
         return "redirect:listarbizcocho";
     }
@@ -80,7 +81,7 @@ public class MainController {
     public String eliminar(@PathVariable(value ="id") Long id){
 
         if (id>0){
-            bizcochoDao.delete(id);
+            bizcochoService.delete(id);
         }
 
         return"redirect:/listarbizcocho";

@@ -14,20 +14,19 @@ public class BizcochoDaoImpl implements IBizcochoDao{
     @PersistenceContext
     private EntityManager em;
     @SuppressWarnings("unchecked")
-    @Transactional(readOnly = true)
     @Override
     public List<Bizcocho> findAll() {
         return em.createQuery("from Bizcocho").getResultList();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Bizcocho findOne(Long id) {
         return em.find(Bizcocho.class, id);
     }
 
+
+    //Hace de guardar y editar
     @Override
-    @Transactional
     public void save(Bizcocho bizcocho) {
         if (bizcocho.getId()!= null && bizcocho.getId()>0){
             em.merge(bizcocho);
@@ -39,9 +38,7 @@ public class BizcochoDaoImpl implements IBizcochoDao{
     }
 
 
-
     @Override
-    @Transactional
     public void delete(Long id) {
         Bizcocho bizcocho= findOne(id);
         em.remove(bizcocho);
