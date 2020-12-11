@@ -1,13 +1,11 @@
 package com.javierfernandez.springboot.demo.models.dao;
 
 import com.javierfernandez.springboot.demo.models.entity.Bizcocho;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
 
-public interface IBizcochoDao {
+//no se anota por que hereda de un componente ya spring
+public interface IBizcochoDao  extends CrudRepository <Bizcocho, Long>{
 
-    public List<Bizcocho> findAll();
-    public void save(Bizcocho bizcocho);
-    public Bizcocho findOne(Long id);
-    public void delete(Long id);
+
 }

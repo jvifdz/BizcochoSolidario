@@ -18,7 +18,7 @@ public class BizcochoServideImpl implements IBizcochoService{
     @Override
     @Transactional(readOnly = true)
     public List<Bizcocho> findAll() {
-        return bizcochoDao.findAll();
+        return (List<Bizcocho>) bizcochoDao.findAll();
     }
 
     @Override
@@ -31,13 +31,13 @@ public class BizcochoServideImpl implements IBizcochoService{
     @Override
     @Transactional(readOnly = true)
     public Bizcocho findOne(Long id) {
-        return bizcochoDao.findOne(id);
+        return bizcochoDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
-        bizcochoDao.delete(id);
+        bizcochoDao.deleteById(id);
 
     }
 }
