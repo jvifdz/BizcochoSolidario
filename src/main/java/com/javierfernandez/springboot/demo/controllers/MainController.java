@@ -10,13 +10,15 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 @Controller
@@ -25,6 +27,9 @@ public class MainController {
 
     @Autowired
     private IBizcochoService bizcochoService;
+
+
+
 
     @RequestMapping(value = {"/listarbizcocho","/",""},method = RequestMethod.GET)
     public String listarBizcocho(Model model){
@@ -58,7 +63,7 @@ public class MainController {
 
 
     @RequestMapping(value = "/formbizcocho", method = RequestMethod.POST)
-    public String guardarBizcocho (@Valid Bizcocho bizcocho, BindingResult result, Model model, SessionStatus status){
+    public String guardarBizcocho (@Valid Bizcocho bizcocho, BindingResult result, Model model, @RequestParam("file")MultipartFile foto, SessionStatus status){
 
         //si tiene errores volvemos a la vista formulario
         //y volvemos a pasar el titulo
@@ -70,6 +75,20 @@ public class MainController {
             model.addAttribute("titulo","Insertar Bizcocho");
 
             return "formbizcocho";
+        }
+        if (!foto.isEmpty()){
+            Path directorioRecursos = Paths.get("src//main//resources//static/uploads");
+            String rootPath = directorioRecursos.toFile().getAbsolutePath();
+            try {
+                byte[] bytes = foto.getBytes();
+
+                Path rutaCompleta = Paths.get(rootPath+"//"+foto.getOriginalFilename());
+                Files.write(rutaCompleta,bytes);
+
+                bizcocho.setFoto(foto.getOriginalFilename());
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }
 
         bizcochoService.save(bizcocho);
