@@ -28,7 +28,18 @@ public class MainController {
     @Autowired
     private IBizcochoService bizcochoService;
 
+    @GetMapping(value = "/ver/{id}")
+    public String ver(@PathVariable(value="id") Long id, Map<String,Object>model){
+        Bizcocho bizcocho = bizcochoService.findOne(id);
+        if (bizcocho==null){
+            return "redirect:/listarbizcocho";
+        }
 
+        model.put("bizcocho",bizcocho);
+        model.put("titulo","Detalle del bizcocho"+bizcocho.getDescripcion());
+
+        return "ver";
+    }
 
 
     @RequestMapping(value = {"/listarbizcocho","/",""},method = RequestMethod.GET)
