@@ -36,7 +36,7 @@ public class MainController {
         }
 
         model.put("bizcocho",bizcocho);
-        model.put("titulo","Detalle del bizcocho"+bizcocho.getDescripcion());
+        model.put("titulo","Detalle del bizcocho: "+bizcocho.getDescripcion());
 
         return "ver";
     }

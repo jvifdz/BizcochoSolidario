@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <title th:text="${titulo}"></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
 </head>
 <body>
 
@@ -25,36 +26,24 @@
     </div>
 </nav>
 <div class="container">
-<h1 class="text-secondary border border-success border-top-0 border-right-0 border-left-0" th:text="${titulo}"></h1>
-<p><a class="btn btn-success btn-xs" th:href="@{/formbizcocho}">Crear Bizcocho</a></p>
-    <table class="table table-striped">
-    <thead>
-    <tr>
-        <th>id</th>
-        <th>Descripcion</th>
-        <th>Intolerancias</th>
-        <th>Número de votos</th>
-        <th>Número de raciones</th>
-        <th>Dia en el que se ha añadido</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
-    </tr>
-    </thead>
-    <tbody>
-        <tr th:each="bizcocho: ${bizcochos}">
-            <td><a class="btn btn-success btn-xs" th:href="@{/ver/}+${bizcocho.id}" th:text="${bizcocho.id}"></a></td>
-            <td th:text="${bizcocho.descripcion}"></td>
-            <td th:text="${bizcocho.intolerancias}"></td>
-            <td th:text="${bizcocho.votos}"></td>
-            <td th:text="${bizcocho.numeroraciones}"></td>
-            <td th:text="${bizcocho.fecha}"></td>
-            <td><a class="btn btn-primary btn-xs" th:href="@{/formbizcocho/}+${bizcocho.id}" th:text="'editar'"></a></td>
-            <td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/}+${bizcocho.id}" th:text="'eliminar'" onclick="return confirm('¿Estás seguro que quieres eliminar?');"></a></td>
 
-        </tr>
-    </tbody>
-</table>
+    <h1 class="text-secondary border border-success border-top-0 border-right-0 border-left-0" th:text="${titulo}"></h1>
+
+    <img  class="img.thumbnail rounded float-left" style="max-width: 25%" th:src="@{'/uploads/'+ ${bizcocho.foto}}" th:alt="${bizcocho.foto}">
+
+    <ul class="list-group">
+        <li class="list-group-item" th:text="${bizcocho.descripcion}"></li>
+        <li class="list-group-item" th:text="${bizcocho.intolerancias}"></li>
+        <li class="list-group-item" th:text="${bizcocho.numeroraciones}"></li>
+        <li class="list-group-item" th:text="${bizcocho.fecha}"></li>
+        <li class="list-group-item" th:text="${bizcocho.votos}"></li>
+
+    </ul>
+
+
 </div>
+
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -63,4 +52,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 </body>
+
+
+
 </html>
