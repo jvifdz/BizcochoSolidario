@@ -26,7 +26,7 @@
 </nav>
 <div class="container">
     <h1 class="text-secondary border border-success border-top-0 border-right-0 border-left-0" th:text="${titulo}"></h1>
-<form th:action="@{/formbizcocho}" th:object="${bizcocho}" method="post">
+<form th:action="@{/formbizcocho}" th:object="${bizcocho}" method="post" enctype="multipart/form-data">
 
     <div class="form-group row">
             <label class="col-sm-2 col-form-label">Raciones</label>

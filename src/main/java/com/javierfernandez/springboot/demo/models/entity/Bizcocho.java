@@ -41,6 +41,7 @@ public class Bizcocho {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
+    private String foto;
 
     /*La fecha se ponga sola automaticamente
     @PrePersist
@@ -98,5 +99,13 @@ public class Bizcocho {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
