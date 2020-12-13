@@ -30,7 +30,7 @@
     <table class="table table-striped">
     <thead>
     <tr>
-        <th>id</th>
+        <th>Visualizar</th>
         <th>Descripcion</th>
         <th>Intolerancias</th>
         <th>Número de votos</th>
@@ -42,7 +42,7 @@
     </thead>
     <tbody>
         <tr th:each="bizcocho: ${bizcochos}">
-            <td><a class="btn btn-success btn-xs" th:href="@{/ver/}+${bizcocho.id}" th:text="${bizcocho.id}"></a></td>
+            <td><a class="btn btn-success btn-xs" th:href="@{/ver/}+${bizcocho.id}" th:text="${ver}"></a></td>
             <td th:text="${bizcocho.descripcion}"></td>
             <td th:text="${bizcocho.intolerancias}"></td>
             <td th:text="${bizcocho.votos}"></td>

@@ -1,1 +1,0 @@
-INSERT INTO bizcochos (id, numeroraciones, votos, descripcion, intolerancias, fecha,foto) VALUES (1, 100, 5, 'Bizcocho de chocolate','ninguna','2020-08-28','')

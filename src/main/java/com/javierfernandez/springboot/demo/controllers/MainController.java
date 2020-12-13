@@ -50,6 +50,7 @@ public class MainController {
     public String listarBizcocho(Model model){
         model.addAttribute("titulo","Listado de bizcochos");
         model.addAttribute("bizcochos",bizcochoService.findAll());
+        model.addAttribute("ver","Visualizar bizcocho");
         return "listarbizcocho";
     }
 
