@@ -4,6 +4,7 @@ package com.javierfernandez.springboot.demo.controllers;
 
 import com.javierfernandez.springboot.demo.models.entity.Bizcocho;
 import com.javierfernandez.springboot.demo.models.services.IBizcochoService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
+import java.util.UUID;
+import java.util.logging.Logger;
 
 @Controller
 @SessionAttributes("cliente")
@@ -27,6 +30,7 @@ public class MainController {
 
     @Autowired
     private IBizcochoService bizcochoService;
+
 
     @GetMapping(value = "/ver/{id}")
     public String ver(@PathVariable(value="id") Long id, Map<String,Object>model){
@@ -89,14 +93,17 @@ public class MainController {
         }
         if (!foto.isEmpty()){
 
-            String rootPath = "C://Temp//uploads";
+            String uniqueFilename = UUID.randomUUID().toString()+"_"+foto.getOriginalFilename();
+            Path rootPath = Paths.get("uploads").resolve(uniqueFilename);
+            Path rootAbsolutePath = rootPath.toAbsolutePath();
+
+
             try {
-                byte[] bytes = foto.getBytes();
 
-                Path rutaCompleta = Paths.get(rootPath+"//"+foto.getOriginalFilename());
-                Files.write(rutaCompleta,bytes);
+                Files.copy(foto.getInputStream(), rootAbsolutePath);
 
-                bizcocho.setFoto(foto.getOriginalFilename());
+
+                bizcocho.setFoto(uniqueFilename);
             }catch (IOException e){
                 e.printStackTrace();
             }
